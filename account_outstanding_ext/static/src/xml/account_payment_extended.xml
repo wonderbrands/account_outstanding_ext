@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="account.ShowPaymentInfo" t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//td[@style='max-width: 11em;']" position="replace">
+            <td style="width: 100%; padding-left: 10px; padding-right: 15px; vertical-align: top;">
+                <a role="button"
+                   class="oe_form_field btn btn-link open_account_move"
+                   t-att-move-id="line.move_id"
+                   t-att-payment-id="account_payment_id"
+                   title="Haz clic para ver el detalle"
+                   style="text-align: left; white-space: normal; display: block; width: 100%; padding: 0; line-height: 1.3;">
+
+                    <span style="font-weight: bold; color: #212529; font-size: 1.1em; display: block;">
+                        <t t-esc="line.move_name || line.journal_name"/>
+                    </span>
+
+                    <t t-if="line.ref_full">
+                        <div style="font-style: italic; color: #666; font-size: 0.95em; margin-top: 1px;">
+                            Ref: <t t-esc="line.ref_full"/>
+                        </div>
+                    </t>
+
+                    <div class="text-muted" style="font-size: 0.8em; margin-top: 2px;">
+                        <t t-esc="line.date"/>
+                    </div>
+                </a>
+            </td>
+        </xpath>
+
+        <xpath expr="//span[hasclass('oe_form_field_monetary')]/.." position="attributes">
+            <attribute name="style">text-align:right; vertical-align: top; white-space: nowrap;</attribute>
+        </xpath>
+
+        <xpath expr="//a[hasclass('outstanding_credit_assign')]/.." position="attributes">
+            <attribute name="style">vertical-align: top; padding-top: 4px;</attribute>
+        </xpath>
+
+    </t>
+
+</templates>
